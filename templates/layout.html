@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+	<title>{{ title }}</title>
+	{% else %}
+	<title>Amazon</title>
+	{% endif %}	
+</head>
+<body>
+<center><p><h1>Welcome to Mini-Amazon</h1></p></center>
+{% block body %}
+
+{% endblock body %}
+</body>
+<br>
+<br>
+<br>
+
+<footer>
+	<p> &copy; Mini Amazon 2019</p>
+	
+	{% if title!="contact" %}
+	<a href ="/contact"><i>CONTACT</i></a><br><br>
+	
+	{% endif %}
+	{% if title!="about" %}
+	<a href ="/about"><i>ABOUT</i></a><br><br>
+	
+	{% endif %}
+	{% if title!="home" %}
+	<a href="/"><i>HOME</i></a><br><br>
+	
+	{% endif %}
+	{% if session %}
+<a href="/logout"><i>LOGOUT</i></a>
+{% endif %}
+</footer>
+</html>
