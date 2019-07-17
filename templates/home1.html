@@ -1,9 +1,35 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+
+
 {% if session %}
-<p><br><br><h2>Welcome to amazon Home Page!!</h2></p>
+
+<center><p>Welcome {{session['username']}}!</p>
+	<p>you've signed in as a {{ session['c_type']}}</p></center>
+{% if session['c_type']=='buyer' %}
+<p><a href="/products">Click here </a>to look at the products available for sale</p>
+<p><a href="/cart">click here to look at your cart</a></p>
 {% else %}
+<p>Add Product Below</p>
+<center>
+<form action="/products" method="POST">
+		<input type="text" name="name" placeholder="enter product name..."><br>
+		<input type="text" name="description" placeholder="Describe your product..."><br>
+		<input type="text" name="price" placeholder="enter product price..."><br>
+		<input type="Submit" value="Add product">
+	</form>
+</center>
+<p><a href="/products">click here </a>to look at the products you've added to the store</p>
+
+{% endif %}
+
+
+{% else %}
+<p><br><br><h2>Welcome to amazon Home Page!!</h2></p>
+
+
 
 <p><h3>Login</h3></p>
 <form action="/login" method="POST">
@@ -12,5 +38,18 @@
 	<br>
 	<input type="submit" value="login">
 </form>
+
+<p>Don't have an account? sign up!</p>
+<form action="signup" method="POST">
+	<input type="text" name="username" placeholder="enter username"><br>
+	<input type="password" name="password1" placeholder="enter password"><br>
+	<input type="password" name="password2" placeholder="re-enter password"><br>
+	<p>Customer Type</p></br>
+	<p>Buyer<input type="radio" name="type" value="buyer"></p>
+	<p>Seller<input type="radio" name="type" value="seller"></p></br>
+	<input type="Submit" value="Create acount">
+</form>
+
+<p>
 {% endif %}
 {% endblock body %}

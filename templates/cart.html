@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% for product in products %}
+{% if product %}
+<ul>
+	<li><b>Product Name</b>:{{ product['name'] }}</li>
+	<li><b>Product Price</b>:{{ product['price'] }}</li>
+	<li><b>Seller</b>:{{ product['seller'] }}</li>
+	<li><b>Product Description</b>:{{ product['description'] }}</li>
+</ul>
+
+<form action="/remove_from_cart" method="POST">
+	<input type="hidden" name="name" value="{{ product['name'] }}">
+	<input type="submit" value="remove from cart">
+</form>
+{% endif %}
+{% endfor %}
+
+
+
+{% endblock body %}
